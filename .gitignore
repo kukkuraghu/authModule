@@ -38,3 +38,14 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+
+#ngfactory and ngsummary
+**/*.ngfactory.ts
+**/*.ngsummary.json
+
+#compilation output in the src/environments folder
+src/environments/*.js
+src/environments/*.map
+
+#temporary files - used for debugging
+*Copy.*
