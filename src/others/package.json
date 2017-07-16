@@ -1,0 +1,41 @@
+{
+  "name": "angular-social-auth",
+  "version": "1.0.1",
+  "description": "An angular module that will perform the social authorization for ionic and cordova apps.",
+  "main": "bundles/socialAuth.umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "keywords": [
+    "angular",
+    "angular2",
+    "angular 2",
+    "angular4",
+	"angular 4",
+	"login",
+	"authentication",
+	"social",
+	"oauth",
+	"ionic",
+	"cordova",
+	"facebook",
+	"google",
+	"federated"
+  ],
+  "author": {
+	"name": "Raghunath Nedumpurath",
+	"email": "raghu.ned@gmail.com"
+  }
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kukkuraghu/authModule.git"
+  },
+  "homepage": "https://github.com/kukkuraghu/authModule",
+  "bugs": {
+    "url": "https://github.com/kukkuraghu/authModule/issues"
+  },
+  "peerDependencies": {
+    "@angular/core": "^2.3.1 || ^4.0.0",
+    "rxjs": "^5.0.1"
+  }
+}

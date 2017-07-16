@@ -12,7 +12,8 @@
     "transpile": "ngc ",
     "package": "rollup -c",
     "minify": "uglifyjs dist/bundles/socialAuth.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/socialAuth.umd.min.js",
-    "build": "npm run transpile && npm run package && npm run minify"
+	"copyfiles": "copyfiles -f ./src/others/index.d.ts ./src/others/package.json ./src/others/README.md dist",
+    "build": "npm run transpile && npm run package && npm run minify && npm run copyfiles"
   },
   "private": true,
   "dependencies": {
@@ -36,6 +37,7 @@
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.28.3",
     "codelyzer": "~2.0.0-beta.1",
+    "copyfiles": "^1.2.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
     "karma": "1.2.0",

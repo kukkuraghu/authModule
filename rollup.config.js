@@ -1,5 +1,5 @@
 export default {
-  entry: 'compiled/src/index.js',
+  entry: 'dist/src/index.js',
   dest: 'dist/bundles/socialAuth.umd.js',
   sourceMap: false,
   format: 'umd',

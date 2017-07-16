@@ -1,10 +1,10 @@
 # angular-social-auth-module
 
-> An angular module which provides social(facebook and google) authentication services
+> An angular module which provides social(facebook and google) authentication services for ionic and cordova hybrid mobile applications
 
 ## Installation
 ```bash
-npm install angular-socialAuth --save
+npm install angular-social-auth --save
 ```
 See npm package for versions - https://www.npmjs.com/package/angular-socialAuth
 
@@ -44,10 +44,10 @@ refer https://github.com/EddyVerbruggen/cordova-plugin-googleplus for detail
 
 ## Usage
 Import the SocialAuthModule in the main module (usually named app.module.ts).  
-	`import { SocialAuthModule } from 'angular-socialAuth';`  
+	`import { SocialAuthModule } from 'angular-social-auth';`  
 For the @NgModule decorator input object, SocialAuthModule should be mentioned in the imports array  
 If AuthServices to be used in a component, import it before using it.  
-	`import { AuthServices } from 'angular-socialAuth';`
+	`import { AuthServices } from 'angular-social-auth';`
 
 ## API
 Before calling any of the methods, please ensure that cordova deviceready event is fired (in ionic Platform.ready() is fulfilled).  
