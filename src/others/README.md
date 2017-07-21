@@ -87,12 +87,18 @@ return: a Promise - resolves to the string 'logout successful'. rejects the stri
 
 ### googleRegister(webClientId)
 `authServices.googleRegister(webClientId)`  
-call googleRegister before using the googleLogin  
+call googleRegister to register a webClientId for google app.  
+for android, a webClientId is required to get the idToken  and serverAuthCode from google.  
+for ios, a webClientId is required to get the serverAuthCode from google. idToken will be provided without webClientId.  
 parameters: 1  (webClientId: required. string).
 
 ### googleLogin
 `authServices.googleLogin()`  
 googleLogin is the public method for google login  
+If no webClientId is registered,  
+ - Android apps won't be getting the idToken  and serverAuthCode from google 
+ - ios apps won't get the serverAuthCode (google will provide the idToken without webClientId)
+
 parameters: None  
 returns: a Promise - resolves to an object of type UserInfo. rejects the error returned from the googleplus plugin.
 
@@ -102,5 +108,12 @@ googleLogout is the public method for google logout
 parameters:None  
 returns: a Promise - resolves to the string 'logout successful'. rejects the string 'logout failed'
 	
+##Changelog  
+**1.1.0**  
 
+----------
+ 1. No need to register webClientId, before calling googleLogin. But if
+    webClientId is not registered, google won't return the tokenId and
+    serverAuthCode for android. For iOS, serverAuthCode won't be
+    returned (google will provide idToken without webClientId for iOS).
 

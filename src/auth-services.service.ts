@@ -133,14 +133,15 @@ function fbLogin(resolve, reject) {
 **  2. googlePlusLoginFailure
 **/
 function googleLogin(resolve, reject, webClientId) {
-  if(!webClientId) {
-    return reject('Before calling google login, register with a valid webClientId');
-  }
+
   const googleLoginContext =   {
-    'scopes': '',
+    'scopes': 'profile email',
     'webClientId': webClientId,
     'offline': true
   };
+  if(!webClientId) {
+    googleLoginContext.offline = false;
+  }
 
   (window as any).plugins.googleplus.login(
           googleLoginContext,
