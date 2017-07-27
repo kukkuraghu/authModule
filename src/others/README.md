@@ -108,7 +108,34 @@ googleLogout is the public method for google logout
 parameters:None  
 returns: a Promise - resolves to the string 'logout successful'. rejects the string 'logout failed'
 	
-##Changelog  
+## Changelog  
+**1.1.1**  
+
+----------
+ 1. UserInfo class is available for import.  
+    Users can import UserInfo as following.  
+    `import { UserInfo } from 'angular-social-auth';`   
+    Both fbLogin and googleLogin (upon successful login) return an object of type  
+    UserInfo.  
+    The structure of the UserInfo is  
+    ```
+	class UserInfo {
+      readonly first_name: string;  
+      readonly last_name: string;
+      readonly email: string;
+      readonly pictureUrl: string;
+      readonly facebook: {
+        readonly id: string;
+        readonly access_token: string;
+      }
+      readonly google: {
+        readonly displayName: string;
+        readonly idToken: string;
+        readonly serverAuthCode: string;
+        readonly userId:string;
+      }
+    }
+	```
 **1.1.0**  
 
 ----------
