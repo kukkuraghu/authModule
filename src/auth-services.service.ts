@@ -109,7 +109,7 @@ function fbLogin(resolve, reject) {
     facebookConnectPlugin.api(response.authResponse.userID + "/?fields=id,first_name, last_name, picture, email&acess_token=" + response.authResponse.accessToken, [],
         function (result) {
           result.access_token = response.authResponse.accessToken;
-          result.facebook = true;
+          result.socialType = SocialTypes.facebook;
           console.log("Result: " + JSON.stringify(result));
           let userInfo = new UserInfo(result);
           resolve(userInfo);
@@ -150,6 +150,7 @@ function googleLogin(resolve, reject, webClientId) {
   );
   function googlePlusLoginSuccess(data) {
     console.log("explicit login through google successful", data);
+    data.socialType = SocialTypes.google;
     let userInfo = new UserInfo(data);
     resolve(userInfo);
   }
@@ -160,6 +161,11 @@ function googleLogin(resolve, reject, webClientId) {
 }
 
 /*
+**The enum to identify the social type used to login
+*/
+export const enum SocialTypes {facebook, google};
+
+/*
 **The class definition for the information returned from facebook login
 **and google login
 */
@@ -168,6 +174,7 @@ export class UserInfo {
   readonly last_name: string;
   readonly email: string;
   readonly pictureUrl: string;
+  readonly socialType: SocialTypes;
   readonly facebook: {
     readonly id: string;
     readonly access_token: string;
@@ -179,28 +186,30 @@ export class UserInfo {
     readonly userId:string;
   }
   constructor(result) {
-      if(result.facebook) {
-        this.first_name = result.first_name;
-        this.last_name = result.last_name;
-        this.email = result.email;
-        this.pictureUrl = result.picture.data.url;
-        this.facebook = {
-          id : result.id,
-          access_token : result.access_token
-        };
-
-      }
-      else {
-        this.first_name = result.givenName;
-        this.last_name = result.familyName;
-        this.email = result.email;
-        this.pictureUrl = result.imageUrl;
-        this.google = {
-          displayName : result.displayName,
-          idToken : result.idToken,
-          serverAuthCode : result.serverAuthCode,
-          userId : result.userId,
-        }
+      this.socialType = result.socialType;
+      switch (result.socialType) {
+        case SocialTypes.facebook : this.first_name = result.first_name;
+                                    this.last_name = result.last_name;
+                                    this.email = result.email;
+                                    this.pictureUrl = result.picture.data.url;
+                                    this.facebook = {
+                                      id : result.id,
+                                      access_token : result.access_token
+                                    };
+                                    break;
+        case SocialTypes.google :   this.first_name = result.givenName;
+                                    this.last_name = result.familyName;
+                                    this.email = result.email;
+                                    this.pictureUrl = result.imageUrl;
+                                    this.google = {
+                                      displayName : result.displayName,
+                                      idToken : result.idToken,
+                                      serverAuthCode : result.serverAuthCode,
+                                      userId : result.userId,
+                                    }
+                                    break;
+        default :                   console.log('unidentified social type');
+                                    break;
       }
   }
 }
