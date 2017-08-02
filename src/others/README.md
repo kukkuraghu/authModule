@@ -40,7 +40,7 @@ For ionic apps
 ```bash
 ionic cordova plugin add cordova-plugin-googleplus --save --variable REVERSED_CLIENT_ID=myreversedclientid
 ```
-refer https://github.com/EddyVerbruggen/cordova-plugin-googleplus for detail
+refer [this](https://github.com/EddyVerbruggen/cordova-plugin-googleplus) for detail
 
 ## Usage
 Import the SocialAuthModule in the main module (usually named app.module.ts).  
@@ -59,6 +59,7 @@ class UserInfo {
   readonly last_name: string;
   readonly email: string;
   readonly pictureUrl: string;
+  readonly socialType: SocialTypes;
   readonly facebook: {
     readonly id: string;
     readonly access_token: string;
@@ -71,6 +72,14 @@ class UserInfo {
   }
 }
 ```
+SocialTypes is an enum defined as following.  
+`export const enum SocialTypes {facebook, google};`
+
+Users can import UserInfo and Socialtypes as following.  
+`import { UserInfo }  from 'angular-social-auth';`   
+`import { SocialTypes } from 'angular-social-auth'; `  
+
+
 ### fbLogin
 `authServices.fbLogin()`  
 fbLogin is the public method for facebook login  
@@ -108,7 +117,39 @@ googleLogout is the public method for google logout
 parameters:None  
 returns: a Promise - resolves to the string 'logout successful'. rejects the string 'logout failed'
 	
+## Demo Apps  
+Check this [app](https://github.com/kukkuraghu/ionic-social-auth) to see how this npm package is used. It is an ionic hybrid mobile app. If you are going to run this app, please don't forget to install cordova plugins for facebook and googleplus.
+
 ## Changelog  
+**1.2.0**  
+
+----------
+1. Introduced an enum SocialTypes `export const enum SocialTypes {facebook, google};`  
+The enumerable values are facebook and google. When other social logins are introduced, this will be amended.  
+Users can import SocialType as following   
+`import { SocialTypes } from 'angular-social-auth'; `  
+2. Added the member socialType (of type SocialTypes) to the class UserInfo. This new member will the social type used for login (currently either SocialTypes.facebook or  SocialTypes.google).  
+The UserInfo class has the following structure now
+```
+class UserInfo {
+  readonly first_name: string;
+  readonly last_name: string;
+  readonly email: string;
+  readonly pictureUrl: string;
+  readonly socialType: SocialTypes;
+  readonly facebook: {
+    readonly id: string;
+    readonly access_token: string;
+  }
+  readonly google: {
+    readonly displayName: string;
+    readonly idToken: string;
+    readonly serverAuthCode: string;
+    readonly userId:string;
+  }
+  ```  
+  3. Added reference to the [demo app](https://github.com/kukkuraghu/ionic-social-auth) (in Demo Apps section) in this readme file.  
+  
 **1.1.1**  
 
 ----------
