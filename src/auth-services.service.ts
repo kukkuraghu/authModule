@@ -106,7 +106,7 @@ function fbLogin(resolve, reject) {
     reject(error);
   }
   function getFbDetail(response) {
-    facebookConnectPlugin.api(response.authResponse.userID + "/?fields=id,first_name, last_name, picture, email&acess_token=" + response.authResponse.accessToken, [],
+    facebookConnectPlugin.api(response.authResponse.userID + "/?fields=id,first_name,last_name,picture,email&acess_token=" + response.authResponse.accessToken, [],
         function (result) {
           result.access_token = response.authResponse.accessToken;
           result.socialType = SocialTypes.facebook;
