@@ -184,6 +184,7 @@ export class UserInfo {
     readonly idToken: string;
     readonly serverAuthCode: string;
     readonly userId:string;
+    readonly access_token:string;
   }
   constructor(result) {
       this.socialType = result.socialType;
@@ -206,6 +207,7 @@ export class UserInfo {
                                       idToken : result.idToken,
                                       serverAuthCode : result.serverAuthCode,
                                       userId : result.userId,
+                                      access_token : result.accessToken,
                                     }
                                     break;
         default :                   console.log('unidentified social type');
